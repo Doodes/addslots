@@ -10,10 +10,10 @@ namespace AddSlots
 {
 
     public class AddSlotsPlugin : Exiled.API.Features.Plugin<Config> {
-
+    public int InitialSlots;
         public override void OnEnabled()
         {
-            base.OnEnabled();
+            InitialSlots = Exiled.API.Features.Server.MaxPlayerCount;
             //ёп куда я жмал
         }
     
@@ -25,8 +25,7 @@ namespace AddSlots
         
         public override void OnDisabled()
         {
-            AddSlots.Comands.ExpandSlots getsavedslotstool = new AddSlots.Comands.ExpandSlots();
-            Exiled.API.Features.Server.MaxPlayerCount = getsavedslotstool.SavedSlots;
+            Exiled.API.Features.Server.MaxPlayerCount = InitialSlots;
         }
     }
 }
